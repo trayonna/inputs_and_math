@@ -31,19 +31,32 @@ $("body").on("click", ".calculate", function (e) {
 	e.preventDefault();
 
 	let pre_total = 0;
+	let post_total = 0;
 
 	$(".pre_total").each(function () {
-		const $this_pre_total = $(this);
-		const $this_pre_total_span = $this_pre_total.find("span");
-
-		let value = $this_pre_total_span.text();
-
-		value = parseFloat(value);
-
-		pre_total = pre_total + value;
+		const this_pre_total = parseFloat($(this).find("span").text());
+		pre_total = pre_total + this_pre_total;
 	});
 
+	$(".post_total").each(function () {
+		const this_post_total = parseFloat($(this).find("span").text());
+		post_total = post_total + this_post_total;
+	});
+
+	console.log("Pre total", pre_total);
+	console.log("Post total", post_total);
+	// The javascript below is what we did in class
+	//	$(".pre_total").each(function () {
+	//	const $this_pre_total = $(this);
+	//	const $this_pre_total_span = $this_pre_total.find("span");
+	// let value = $this_pre_total_span.text();
+	// value = parseFloat(value);
+	//	pre_total = pre_total + value;
+	//	});
 	console.log("Working!");
 	console.log(pre_total);
 
-})
+	$("#pre_total").find("span").text(pre_total);
+	$("#post_total").find("span").text(post_total);
+
+});
